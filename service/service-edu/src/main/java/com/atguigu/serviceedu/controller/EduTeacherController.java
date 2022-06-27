@@ -38,9 +38,9 @@ public class EduTeacherController {
 
     @ApiOperation(value = "所有讲师列表")
     @GetMapping("findAll")
-    public List<EduTeacher> list(){
+    public R findAllTeacher(){
         List<EduTeacher> list = teacherService.list(null);
-        return (List<EduTeacher>) R.ok().data("items", list);
+        return R.ok().data("items", list);
     }
 
     @ApiOperation(value = "逻辑删除讲师")
@@ -115,6 +115,37 @@ public class EduTeacherController {
         map.put("total", total);
         map.put("rows", records);
         return R.ok().data(map);
+    }
+
+
+    @ApiOperation("添加教师")
+    @PostMapping("addTeacher")
+    public R addTeacher(@RequestBody EduTeacher eduTeacher){
+
+        boolean b = teacherService.saveOrUpdate(eduTeacher);
+
+        if(b){
+            return R.ok();
+        }else {
+            return R.error();
+        }
+    }
+
+    @ApiOperation("根据ID查询教师")
+    @GetMapping("getTeacher/{id}")
+    public R getTeacher(@PathVariable String id) {
+        EduTeacher byId = teacherService.getById(id);
+        return R.ok().data("teacher", byId);
+    }
+
+    @ApiOperation("修改教师")
+    @PostMapping("updateTeacher")
+    public R updateTeacher(@RequestBody EduTeacher eduTeacher) {
+        boolean b = teacherService.updateById(eduTeacher);
+        if (b) {
+            return R.ok();
+        } else
+            return R.error();
     }
 
 
