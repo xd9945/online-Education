@@ -26,6 +26,7 @@
     </build>
     <modules>
         <module>service-edu</module>
+        <module>service-acl</module>
     </modules>
 
     <dependencies>
