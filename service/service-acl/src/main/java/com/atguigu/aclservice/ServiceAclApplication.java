@@ -16,6 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.atguigu")
 @MapperScan("com.atguigu.aclservice.mapper")
 public class ServiceAclApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(ServiceAclApplication.class, args);
     }
