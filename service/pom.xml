@@ -27,6 +27,7 @@
     <modules>
         <module>service-edu</module>
         <module>service-acl</module>
+        <module>service-oss</module>
     </modules>
 
     <dependencies>
