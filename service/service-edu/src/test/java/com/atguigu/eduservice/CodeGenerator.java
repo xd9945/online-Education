@@ -22,7 +22,7 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         System.out.println(projectPath);
-        gc.setOutputDir("E:\\project\\online-school\\service\\service-acl\\src\\main\\java");
+        gc.setOutputDir("E:\\project\\online-school\\service\\service-edu\\src\\main\\java");
         gc.setAuthor("xudongzhou");
         gc.setOpen(false); //生成后是否打开资源管理器
         gc.setFileOverride(false); //重新生成时文件是否覆盖
@@ -48,7 +48,7 @@ public class CodeGenerator {
 
         // 4、包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("aclservice"); //模块名
+        pc.setModuleName("serviceedu"); //模块名
         pc.setParent("com.atguigu");
         pc.setController("controller");
         pc.setEntity("entity");
