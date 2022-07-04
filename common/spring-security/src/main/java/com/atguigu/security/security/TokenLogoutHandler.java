@@ -2,6 +2,7 @@ package com.atguigu.security.security;
 
 import com.atguigu.commonutils.R;
 import com.atguigu.commonutils.ResponseUtil;
+import com.atguigu.commonutils.vo.ResultVo;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
@@ -37,7 +38,7 @@ public class TokenLogoutHandler implements LogoutHandler{
             redisTemplate.delete(userName);
         }
 
-        ResponseUtil.out(response, R.ok());
+        ResponseUtil.out(response, ResultVo.ok());
 
     }
 }

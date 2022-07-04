@@ -2,6 +2,7 @@ package com.atguigu.security.filter;
 
 import com.atguigu.commonutils.R;
 import com.atguigu.commonutils.ResponseUtil;
+import com.atguigu.commonutils.vo.ResultVo;
 import com.atguigu.security.security.TokenManager;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -50,13 +51,13 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter{
         try {
             authentication = getAuthentication(req);
         } catch (Exception e) {
-            ResponseUtil.out(res, R.error());
+            ResponseUtil.out(res, ResultVo.error());
         }
 
         if (authentication != null) {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } else {
-            ResponseUtil.out(res, R.error());
+            ResponseUtil.out(res, ResultVo.error());
         }
         chain.doFilter(req, res);
     }

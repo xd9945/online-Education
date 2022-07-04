@@ -2,6 +2,7 @@ package com.atguigu.security.filter;
 
 import com.atguigu.commonutils.R;
 import com.atguigu.commonutils.ResponseUtil;
+import com.atguigu.commonutils.vo.ResultVo;
 import com.atguigu.security.entity.SecurityUser;
 import com.atguigu.security.entity.User;
 import com.atguigu.security.security.TokenManager;
@@ -69,7 +70,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         String token = tokenManager.createToken(user.getCurrentUserInfo().getUsername());
         redisTemplate.opsForValue().set(user.getCurrentUserInfo().getUsername(), user.getPermissionValueList());
 
-        ResponseUtil.out(res, R.ok().data("token", token));
+        ResponseUtil.out(res, ResultVo.ok().data("token", token));
     }
 
     /**
@@ -83,6 +84,6 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                               AuthenticationException e) throws IOException, ServletException {
-        ResponseUtil.out(response, R.error());
+        ResponseUtil.out(response, ResultVo.error());
     }
 }
