@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -21,23 +22,24 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket webApiConfig(){
+    public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("webApi")
-                .apiInfo(webApiInfo())
+                .enable(true)
+                .apiInfo(apiInfo())
                 .select()
-                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
-                .paths(Predicates.not(PathSelectors.regex("/error.*")))
+                //这里配置要扫描的包，接口在哪个包就配置哪个包
+                .apis(RequestHandlerSelectors.basePackage("com.atguigu"))
+                .paths(PathSelectors.any())
                 .build();
     }
 
-    private ApiInfo webApiInfo(){
-
+    public ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("网站-课程中心API文档")
-                .description("本文档描述了课程中心微服务接口定义")
+                .title("谷粒学院")
+                .description("谷粒学院接口")
+                .termsOfServiceUrl("liuscoding")
+                .contact(new Contact("liusCoding","liuscoding.cn","liuscoding@163.com"))
                 .version("1.0")
-                .contact(new Contact("Helen", "http://atguigu.com", "55317332@qq.com"))
                 .build();
     }
 

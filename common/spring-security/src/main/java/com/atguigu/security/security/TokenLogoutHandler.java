@@ -1,6 +1,5 @@
 package com.atguigu.security.security;
 
-import com.atguigu.commonutils.R;
 import com.atguigu.commonutils.ResponseUtil;
 import com.atguigu.commonutils.vo.ResultVo;
 import org.springframework.data.redis.core.RedisTemplate;

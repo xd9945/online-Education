@@ -3,7 +3,7 @@ package com.atguigu.aclservice.controller;
 
 import com.atguigu.aclservice.entity.Permission;
 import com.atguigu.aclservice.service.PermissionService;
-import com.atguigu.commonutils.R;
+import com.atguigu.commonutils.vo.ResultVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,46 +29,46 @@ public class PermissionController {
     //获取全部菜单
     @ApiOperation(value = "查询所有菜单")
     @GetMapping
-    public R indexAllPermission() {
+    public ResultVo indexAllPermission() {
         List<Permission> list =  permissionService.queryAllMenuGuli();
-        return R.ok().data("children",list);
+        return ResultVo.ok().data("children",list);
     }
 
     @ApiOperation(value = "递归删除菜单")
     @DeleteMapping("remove/{id}")
-    public R remove(@PathVariable String id) {
+    public ResultVo remove(@PathVariable String id) {
         permissionService.removeChildByIdGuli(id);
-        return R.ok();
+        return ResultVo.ok();
     }
 
     @ApiOperation(value = "给角色分配权限")
     @PostMapping("/doAssign")
-    public R doAssign(String roleId,String[] permissionId) {
+    public ResultVo doAssign(String roleId,String[] permissionId) {
         permissionService.saveRolePermissionRealtionShipGuli(roleId,permissionId);
-        return R.ok();
+        return ResultVo.ok();
     }
 
     @ApiOperation(value = "根据角色获取菜单")
     @GetMapping("toAssign/{roleId}")
-    public R toAssign(@PathVariable String roleId) {
+    public ResultVo toAssign(@PathVariable String roleId) {
         List<Permission> list = permissionService.selectAllMenu(roleId);
-        return R.ok().data("children", list);
+        return ResultVo.ok().data("children", list);
     }
 
 
 
     @ApiOperation(value = "新增菜单")
     @PostMapping("save")
-    public R save(@RequestBody Permission permission) {
+    public ResultVo save(@RequestBody Permission permission) {
         permissionService.save(permission);
-        return R.ok();
+        return ResultVo.ok();
     }
 
     @ApiOperation(value = "修改菜单")
     @PutMapping("update")
-    public R updateById(@RequestBody Permission permission) {
+    public ResultVo updateById(@RequestBody Permission permission) {
         permissionService.updateById(permission);
-        return R.ok();
+        return ResultVo.ok();
     }
 
 }

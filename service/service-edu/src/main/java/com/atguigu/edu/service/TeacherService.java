@@ -16,6 +16,12 @@ import java.util.Map;
  */
 public interface TeacherService extends IService<Teacher> {
 
-    Map<String, Object> getTeacherFrontList(Page<Teacher> pageTeacher);
+    /**
+     * C端讲师分页查询
+     * @param teacherPage 分页对象
+     * @return 分页结果集
+     */
+
+    Page<Teacher> getTeacherFrontList(Page<Teacher> teacherPage);
 
 }

@@ -1,6 +1,11 @@
 package com.atguigu.edu.service;
 
 import com.atguigu.edu.entity.Course;
+import com.atguigu.edu.model.form.CourseInfoForm;
+import com.atguigu.edu.model.query.CourseQuery;
+import com.atguigu.edu.model.vo.CourseInfoVo;
+import com.atguigu.edu.model.vo.CoursePublishVo;
+import com.atguigu.edu.model.vo.CourseWebVo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 

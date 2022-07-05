@@ -3,6 +3,7 @@ package com.atguigu.edu.service.impl;
 import com.atguigu.edu.entity.Teacher;
 import com.atguigu.edu.mapper.EduTeacherMapper;
 import com.atguigu.edu.service.TeacherService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -26,31 +27,20 @@ import java.util.Map;
 @Service
 public class TeacherServiceImpl extends ServiceImpl<EduTeacherMapper, Teacher> implements TeacherService {
 
+    /**
+     * C端讲师分页查询
+     *
+     * @param teacherPage 分页对象
+     * @return 分页结果集
+     */
     @Override
-    public Map<String, Object> getTeacherFrontList(Page<Teacher> pageTeacher) {
+    public Page<Teacher> getTeacherFrontList(Page<Teacher> teacherPage) {
 
-        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("id");
-        //分页封装到pageTeacher中
-        baseMapper.selectPage(pageTeacher,queryWrapper);
-        List<Teacher> records = pageTeacher.getRecords();
-        long current = pageTeacher.getCurrent();
-        long pages = pageTeacher.getPages();
-        long size = pageTeacher.getSize();
-        long total = pageTeacher.getTotal();
+        LambdaQueryWrapper<Teacher> teacherQuery = new LambdaQueryWrapper<>();
+        teacherQuery.orderByDesc(Teacher::getId);
 
-        boolean hasNext = pageTeacher.hasNext();//上一页
-        boolean hasPrevious = pageTeacher.hasPrevious();//下一页
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("items",records);
-        map.put("current", current);
-        map.put("pages", pages);
-        map.put("size", size);
-        map.put("total", total);
-        map.put("hasNext", hasNext);
-        map.put("hasPrevious", hasPrevious);
-
-        return map;
+        teacherPage = (Page<Teacher>) this.page(teacherPage,teacherQuery);
+        return teacherPage;
     }
 }
+

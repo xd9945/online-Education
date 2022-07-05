@@ -7,20 +7,21 @@ import java.util.Date;
 
 /**
  * @author xudongzhou
- * @date 2022-06-26
+ * @date 2022-07-06
  * @desc
  */
 public class MyMetaObjectHandler implements MetaObjectHandler {
 
-
     @Override
     public void insertFill(MetaObject metaObject) {
+        //属性名称，不是字段名称
         this.setFieldValByName("gmtCreate", new Date(), metaObject);
         this.setFieldValByName("gmtModified", new Date(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-
+        this.setFieldValByName("gmtModified", new Date(), metaObject);
     }
+
 }

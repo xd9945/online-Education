@@ -1,6 +1,5 @@
 package com.atguigu.security.filter;
 
-import com.atguigu.commonutils.R;
 import com.atguigu.commonutils.ResponseUtil;
 import com.atguigu.commonutils.vo.ResultVo;
 import com.atguigu.security.security.TokenManager;
