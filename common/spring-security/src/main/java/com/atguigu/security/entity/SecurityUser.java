@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author xudongzhou
  * @date 2022-06-29
- * @desc
+ * @desc 安全认证用户详情信息
  */
 @Data
 @Slf4j
@@ -43,7 +43,6 @@ public class SecurityUser implements UserDetails {
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(permissionValue);
             authorities.add(authority);
         }
-
         return authorities;
     }
 

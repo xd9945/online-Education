@@ -18,7 +18,8 @@
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>guli_parent</name>
-    <description>guli_parent</description>
+<!--    <description>guli_parent</description>-->
+
     <properties>
         <java.version>1.8</java.version>
         <guli.version>0.0.1-SNAPSHOT</guli.version>
@@ -196,6 +197,24 @@
                 <version>${canal.client.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${swagger-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.atguigu</groupId>
+                <artifactId>service-base</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.atguigu</groupId>
+                <artifactId>common-utils</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -204,14 +223,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 /**
  * @author xudongzhou
- * @date 2022-06-28
+ * @date 2022-06-28  登录问题出在这，待解决
  * @desc  登录过滤器，继承UsernamePasswordAuthenticationFilter，对用户名密码进行登录校验
  */
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
@@ -50,7 +50,6 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     /**
@@ -70,6 +69,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         redisTemplate.opsForValue().set(user.getCurrentUserInfo().getUsername(), user.getPermissionValueList());
 
         ResponseUtil.out(res, ResultVo.ok().data("token", token));
+        System.out.println("登录成功");
     }
 
     /**
@@ -84,5 +84,6 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                               AuthenticationException e) throws IOException, ServletException {
         ResponseUtil.out(response, ResultVo.error());
+        System.out.println("登录失败");
     }
 }

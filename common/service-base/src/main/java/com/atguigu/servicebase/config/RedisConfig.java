@@ -24,8 +24,8 @@ import java.time.Duration;
  * @date 2022-06-29
  * @desc
  */
-@EnableCaching
-@Configuration
+@EnableCaching  //开启缓存
+@Configuration  //配置类
 public class RedisConfig  extends CachingConfigurerSupport {
 
     @Bean

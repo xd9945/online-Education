@@ -5,10 +5,7 @@ import com.atguigu.aclservice.service.IndexService;
 import com.atguigu.commonutils.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +17,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/admin/acl/index")
+//@CrossOrigin
 public class IndexController {
 
     @Autowired
@@ -33,6 +31,7 @@ public class IndexController {
         //获取当前登录用户用户名
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Map<String, Object> userInfo = indexService.getUserInfo(username);
+        System.out.println("是否进入这一行!");
         return ResultVo.ok().data(userInfo);
     }
 
